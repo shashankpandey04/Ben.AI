@@ -1,0 +1,12 @@
+# This file lists all the dependencies that are required by the project
+
+# pyttsx3 is a text-to-speech conversion library in Python
+pyttsx3
+# speechrecognition is a library for performing speech recognition, with support for several engines and APIs, online and offline
+speechrecognition
+# pyaudio is a Python binding for PortAudio, a cross-platform audio I/O library
+pyaudio
+# transformers is a library for Natural Language Processing (NLP) tasks, such as text classification, question answering, and language modeling
+transformers
+# torch is a library for machine learning, with a focus on deep learning
+torch 
