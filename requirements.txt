@@ -7,6 +7,8 @@ speechrecognition
 # pyaudio is a Python binding for PortAudio, a cross-platform audio I/O library
 pyaudio
 # transformers is a library for Natural Language Processing (NLP) tasks, such as text classification, question answering, and language modeling
-transformers
+#transformers
 # torch is a library for machine learning, with a focus on deep learning
-torch 
+#torch 
+#google-generativeai is a library for generating images using Google's Generative AI models
+google-generativeai

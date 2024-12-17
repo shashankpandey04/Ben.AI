@@ -1,10 +1,22 @@
 
 from Function.takecommand import takeCommand
 from Function.wish import wish
-from Function.wikipedia import fetch_wikipedia_content, summarize_text
+#from Function.wikipedia import fetch_wikipedia_content, summarize_text
 from Function.speak import speak
 
+import os
+import dotenv
+
+import google.generativeai as genai
+
+dotenv.load_dotenv()
+
 SLEEP = False
+
+GEMINI_API = os.getenv("API_KEY")
+
+genai.configure(api_key=GEMINI_API)
+model = genai.GenerativeModel(model_name='gemini-1.5-flash')
 
 def main():
     """
@@ -19,21 +31,15 @@ def main():
         query = takeCommand().lower()
         if query == "none":
             continue
-        elif "search" in query:
-                speak("Hmm, let me check that for you.")
-                speak(f"Searching Wikipedia for {query}")
-                query = query.replace("wikipedia", "")
 
-                # Fetch Wikipedia content
-                wiki_content = fetch_wikipedia_content(query)
-                speak("Summarizing the content from Wikipedia.")
-                # Summarize the Wikipedia content
-                summarized_content = summarize_text(wiki_content, max_length=50)
-                speak("Here is a summary of the article:")
-                speak(summarized_content)
-
+        elif "what is" and "weather" in query:
+            speak("I am checking the weather for you.")
+            response = model.generate_content(query)
+            speak(response.text)
+        
         else:
-            speak("Sorry, I did not get that. Please try again.")
+            response = model.generate_content(query)
+            speak(response.text)
 
 if __name__ == "__main__":
     main()
